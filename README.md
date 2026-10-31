@@ -44,3 +44,13 @@ Saved datasets reflect historical runs. A successful local path or syntax check 
 ## License
 
 [GNU General Public License v3.0](LICENSE). The repository license does not transfer ownership of the source articles.
+
+
+## Offline regression checks
+
+Run `python -m unittest discover -s tests -v` with `beautifulsoup4` installed.
+Tests use local HTML and fake responses. Article downloads use a 30-second
+request timeout, reject HTTP failures, and support both committed content
+selectors. Rerunning the NLP processing cell resets its results rather than
+appending duplicate answers. The optional NLP provider calls remain a live
+integration and are not exercised by these tests.
