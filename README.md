@@ -43,7 +43,7 @@ Saved datasets reflect historical runs. A successful local path or syntax check 
 
 ## License
 
-[GNU General Public License v3.0](LICENSE). The repository license does not transfer ownership of the source articles.
+[MIT](LICENSE). The repository license does not transfer ownership of the source articles.
 
 
 ## Offline regression checks
