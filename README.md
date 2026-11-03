@@ -29,7 +29,7 @@ The committed example searches 2016 records. It is a reproducible configuration 
 
 The notebook imports Selenium, Requests, Beautiful Soup, pandas, IPython, OpenAI, and TOML. Spreadsheet exports also need an appropriate Excel writer, including XlsxWriter for the explicit writer calls. No frozen dependency environment is provided.
 
-The scraping cell starts ChromeDriver from `/chromedriver.exe`. Change that path to a compatible local ChromeDriver installation before running. A Chrome or Chromium browser and network access are required. Run the collection and export cells in order.
+The scraping cell starts Chrome through `webdriver.Chrome`. Set the `CHROMEDRIVER_PATH` environment variable to use a specific ChromeDriver; otherwise Selenium Manager locates a compatible driver. A Chrome or Chromium browser and network access are required. Run the collection and export cells in order.
 
 The **Text Analyzing** section is optional. It reads `OPENAI_KEY` from a local `secrets.toml`, then uses the historical `openai.Completion.create` integration and configured `text-davinci-003` model. OpenAI [retired that model on 2024-01-04](https://developers.openai.com/api/docs/deprecations). That section requires API/model modernization before a new live analysis run; the scraping stages can be inspected independently. Real TOML credential files are excluded by the existing `.gitignore`.
 
