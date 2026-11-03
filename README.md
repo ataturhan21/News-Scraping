@@ -47,17 +47,23 @@ The **Text Analyzing** section is optional. It reads `OPENAI_KEY` from a local `
 
 Saved datasets reflect historical runs. A successful local path or syntax check does not validate today's site selectors, completeness of collected articles, or the correctness of extracted entities.
 
-## License
-
-[MIT](LICENSE). The repository license does not transfer ownership of the source articles.
-
-
 ## Offline regression checks
 
-Run `python -m unittest discover -s tests -v` with `beautifulsoup4` installed.
-Tests use local HTML and fake responses. Article downloads use a 30-second
+CI runs these checks with Python 3.10 and only `beautifulsoup4` installed:
+
+```bash
+python -m pip install beautifulsoup4==4.12.3
+python -m unittest discover -s tests -v
+```
+
+Tests use local HTML and fake responses, and check the generated search URL
+query. Article downloads use a 30-second
 request timeout, reject HTTP failures, and support both committed content
 selectors. Rerunning the NLP processing cell resets its results rather than
 appending duplicate answers, and rows without article text are recorded as
 `no content` without a provider call. The optional NLP provider calls remain a live
 integration and are not exercised by these tests.
+
+## License
+
+[MIT](LICENSE). The repository license does not transfer ownership of the source articles.
