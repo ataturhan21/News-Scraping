@@ -27,9 +27,15 @@ The committed example searches 2016 records. It is a reproducible configuration 
 
 ## Environment and execution
 
-The notebook imports Selenium, Requests, Beautiful Soup, pandas, IPython, OpenAI, and TOML. Spreadsheet exports also need an appropriate Excel writer, including XlsxWriter for the explicit writer calls. No frozen dependency environment is provided.
+Install the pinned notebook environment (verified offline with Python 3.12):
 
-The scraping cell starts ChromeDriver from `/chromedriver.exe`. Change that path to a compatible local ChromeDriver installation before running. A Chrome or Chromium browser and network access are required. Run the collection and export cells in order.
+```bash
+python -m pip install -r requirements.txt
+```
+
+It covers Selenium, Requests and Beautiful Soup (used by `article_content.py`), pandas, IPython, TOML, XlsxWriter for the spreadsheet exports, and OpenAI 0.28.1, the last line that provides the `openai.Completion` API the notebook calls.
+
+The scraping cell starts Chrome through `webdriver.Chrome`. Set the `CHROMEDRIVER_PATH` environment variable to use a specific ChromeDriver; otherwise Selenium Manager locates a compatible driver. A Chrome or Chromium browser and network access are required. Run the collection and export cells in order.
 
 The **Text Analyzing** section is optional. It reads `OPENAI_KEY` from a local `secrets.toml`, then uses the historical `openai.Completion.create` integration and configured `text-davinci-003` model. OpenAI [retired that model on 2024-01-04](https://developers.openai.com/api/docs/deprecations). That section requires API/model modernization before a new live analysis run; the scraping stages can be inspected independently. Real TOML credential files are excluded by the existing `.gitignore`.
 
@@ -41,16 +47,23 @@ The **Text Analyzing** section is optional. It reads `OPENAI_KEY` from a local `
 
 Saved datasets reflect historical runs. A successful local path or syntax check does not validate today's site selectors, completeness of collected articles, or the correctness of extracted entities.
 
+## Offline regression checks
+
+CI runs these checks with Python 3.10 and only `beautifulsoup4` installed:
+
+```bash
+python -m pip install beautifulsoup4==4.12.3
+python -m unittest discover -s tests -v
+```
+
+Tests use local HTML and fake responses, and check the generated search URL
+query. Article downloads use a 30-second
+request timeout, reject HTTP failures, and support both committed content
+selectors. Rerunning the NLP processing cell resets its results rather than
+appending duplicate answers, and rows without article text are recorded as
+`no content` without a provider call. The optional NLP provider calls remain a live
+integration and are not exercised by these tests.
+
 ## License
 
 [MIT](LICENSE). The repository license does not transfer ownership of the source articles.
-
-
-## Offline regression checks
-
-Run `python -m unittest discover -s tests -v` with `beautifulsoup4` installed.
-Tests use local HTML and fake responses. Article downloads use a 30-second
-request timeout, reject HTTP failures, and support both committed content
-selectors. Rerunning the NLP processing cell resets its results rather than
-appending duplicate answers. The optional NLP provider calls remain a live
-integration and are not exercised by these tests.
