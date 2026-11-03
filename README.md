@@ -27,7 +27,13 @@ The committed example searches 2016 records. It is a reproducible configuration 
 
 ## Environment and execution
 
-The notebook imports Selenium, Requests, Beautiful Soup, pandas, IPython, OpenAI, and TOML. Spreadsheet exports also need an appropriate Excel writer, including XlsxWriter for the explicit writer calls. No frozen dependency environment is provided.
+Install the pinned notebook environment (verified offline with Python 3.12):
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+It covers Selenium, Requests and Beautiful Soup (used by `article_content.py`), pandas, IPython, TOML, XlsxWriter for the spreadsheet exports, and OpenAI 0.28.1, the last line that provides the `openai.Completion` API the notebook calls.
 
 The scraping cell starts Chrome through `webdriver.Chrome`. Set the `CHROMEDRIVER_PATH` environment variable to use a specific ChromeDriver; otherwise Selenium Manager locates a compatible driver. A Chrome or Chromium browser and network access are required. Run the collection and export cells in order.
 

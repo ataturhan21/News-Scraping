@@ -1,0 +1,10 @@
+# Notebook environment, verified offline with Python 3.12.
+# openai stays below 1.0 because the notebook calls openai.Completion.create.
+beautifulsoup4==4.15.0
+ipython==9.18.1
+openai==0.28.1
+pandas==3.1.0
+requests==2.34.2
+selenium==4.52.0
+toml==0.10.2
+xlsxwriter==3.3.1
