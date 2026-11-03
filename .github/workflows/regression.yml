@@ -1,9 +1,9 @@
 name: Offline regression checks
 on:
   push:
-    paths: ['article_content.py', 'News Scraping.ipynb', 'tests/**', '.github/workflows/regression.yml']
+    paths: ['article_content.py', 'search_url.py', 'News Scraping.ipynb', 'tests/**', '.github/workflows/regression.yml']
   pull_request:
-    paths: ['article_content.py', 'News Scraping.ipynb', 'tests/**', '.github/workflows/regression.yml']
+    paths: ['article_content.py', 'search_url.py', 'News Scraping.ipynb', 'tests/**', '.github/workflows/regression.yml']
   workflow_dispatch:
 permissions:
   contents: read
