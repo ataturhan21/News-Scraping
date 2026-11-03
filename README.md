@@ -52,5 +52,6 @@ Run `python -m unittest discover -s tests -v` with `beautifulsoup4` installed.
 Tests use local HTML and fake responses. Article downloads use a 30-second
 request timeout, reject HTTP failures, and support both committed content
 selectors. Rerunning the NLP processing cell resets its results rather than
-appending duplicate answers. The optional NLP provider calls remain a live
+appending duplicate answers, and rows without article text are recorded as
+`no content` without a provider call. The optional NLP provider calls remain a live
 integration and are not exercised by these tests.
