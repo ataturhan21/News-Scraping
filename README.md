@@ -64,6 +64,8 @@ appending duplicate answers, and rows without article text are recorded as
 `no content` without a provider call. The optional NLP provider calls remain a live
 integration and are not exercised by these tests.
 
-## License
+## Copyright
 
-[MIT](LICENSE). The repository license does not transfer ownership of the source articles.
+© Ata Turhan. All rights reserved. This repository has no open-source license: its code may not be copied, modified or redistributed.
+
+The source articles belong to their publishers.
